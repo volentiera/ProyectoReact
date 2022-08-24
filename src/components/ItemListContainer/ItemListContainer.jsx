@@ -2,9 +2,10 @@ import React from 'react';
 
 const ItemListContainer = ({greeting}) => {
     return (
-        <h1 className='font-style: italic text-4xl'>
+        <h1 className='text-4xl italic font-style:'>
             {greeting}
         </h1>
+        
     );
 };
 
