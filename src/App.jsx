@@ -8,17 +8,19 @@ import Navbar from './components/navbar';
 
 
 function App() {
-  const onAdd = (props) =>{
-    (console.log(`Compro: ${props}`))
+  const onAdd = (quantity) =>{
+    (console.log(`Compro: ${quantity}`))
   }
+  
   return (
     <div className="App">
       <Navbar/>
       <header className="App-header">
-        <ItemListContainer greeting="Bienvenido!"/>
         <ItemCount stock={5} initial={1} onAdd={onAdd}/>
+        <ItemListContainer/>
       </header>
     </div>
+    
   );
 }
 
