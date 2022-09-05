@@ -1,24 +1,19 @@
 
 import './App.css';
-import ItemCount from './components/ItemCount/ItemCount';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+
+
 import Navbar from './components/navbar';
 
 
 
 function App() {
-  const onAdd = (quantity) =>{
-    (console.log(`Compro: ${quantity}`))
-  }
   
   return (
     <div className="App">
       <Navbar/>
-      <header className="App-header">
-        <ItemCount stock={5} initial={1} onAdd={onAdd}/>
-        <ItemListContainer/>
-      </header>
+      <ItemDetailContainer/>
     </div>
     
   );
