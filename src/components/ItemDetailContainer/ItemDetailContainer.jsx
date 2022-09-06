@@ -12,7 +12,7 @@ const ItemDetailContainer = () => {
             `https://62e2a4b4b54fc209b87dbcaf.mockapi.io/catalogoProductos`
             );
             const data = await response.json();
-            setItems(data);
+            setItems(data[0]);
         } catch (e) {
           console.log(e);
         }
@@ -23,7 +23,7 @@ const ItemDetailContainer = () => {
       }, []);
     return (
         <div>
-            {items && <ItemDetail items={items}/>}
+            {items && <ItemDetail item={items}/>}
         </div>
     );
 };

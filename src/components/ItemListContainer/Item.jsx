@@ -1,14 +1,14 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+// import Box from "@mui/material/Box";
+// import Typography from "@mui/material/Typography";
+// import Modal from "@mui/material/Modal";
 import ItemCount from "../ItemCount/ItemCount";
 import "./modalcart.css";
 
 const Item = ({ item }) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const [open, setOpen] = React.useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
   const onAdd = (quantity) => {
     console.log(`Compro: ${quantity}`);
   };
@@ -19,12 +19,12 @@ const Item = ({ item }) => {
       <h3>{item.marca}</h3>
       <p className="mt-4">${item.precio}</p>
       <button
-        onClick={handleOpen}
+        // onClick={() => <ItemCount stock={5} initial={1} onAdd={onAdd} />}
         className="px-4 py-2 mt-4 font-bold text-white bg-gray-500 rounded-full hover:bg-gray-700"
       >
         Comprar
       </button>
-      <Modal
+      {/* <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -38,7 +38,7 @@ const Item = ({ item }) => {
             <ItemCount stock={5} initial={1} onAdd={onAdd} />
           </Typography>
         </Box>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
