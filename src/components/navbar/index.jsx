@@ -7,69 +7,51 @@ import {
   ChartBarIcon,
   CursorClickIcon,
   MenuIcon,
-  PhoneIcon,
-  PlayIcon,
-  RefreshIcon,
   ShieldCheckIcon,
   SupportIcon,
-  ViewGridIcon,
   XIcon,
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import CartWidget from "./CartWidget";
+import { Link } from "react-router-dom";
 
 const solutions = [
   {
-    name: "Analytics",
+    name: "Indumentaria",
     href: "#",
+    key: "1",
     icon: ChartBarIcon,
   },
   {
-    name: "Engagement",
+    name: "Accesorio",
     href: "#",
+    key: "2",
     icon: CursorClickIcon,
   },
   {
-    name: "Security",
+    name: "Calzado",
     href: "#",
+    key: "3",
     icon: ShieldCheckIcon,
-  },
-  {
-    name: "Integrations",
-    href: "#",
-    icon: ViewGridIcon,
-  },
-  {
-    name: "Automations",
-    href: "#",
-    icon: RefreshIcon,
-  },
+  }
 ];
-const callsToAction = [
-  { name: "Watch Demo", href: "#", icon: PlayIcon },
-  { name: "Contact Sales", href: "#", icon: PhoneIcon },
-];
+
 const resources = [
   {
-    name: "Help Center",
+    name: "Redes Sociales",
     href: "#",
     icon: SupportIcon,
   },
   {
-    name: "Guides",
+    name: "Metodos de pago",
     href: "#",
     icon: BookmarkAltIcon,
   },
   {
-    name: "Events",
+    name: "Descuentos",
     href: "#",
     icon: CalendarIcon,
-  },
-  {
-    name: "Security",
-    href: "#",
-    icon: ShieldCheckIcon,
-  },
+  }
 ];
 
 
@@ -79,18 +61,18 @@ function classNames(...classes) {
 
 export default function Navbar() {
   return (
-    <Popover className="relative bg-white">
+    <Popover className="relative bg-gray-800">
       <div className="px-4 mx-auto max-w-7xl sm:px-6">
-        <div className="flex items-center justify-between py-6 border-b-2 border-gray-100 md:justify-start md:space-x-10">
+        <div className="flex items-center justify-between py-6 border-gray-100 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
+            <Link to={"/"}>
               <span className="sr-only">Workflow</span>
               <img
                 className="w-auto h-8 sm:h-10"
                 src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
                 alt=""
               />
-            </a>
+            </Link>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
             <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -104,15 +86,15 @@ export default function Navbar() {
                 <>
                   <Popover.Button
                     className={classNames(
-                      open ? "text-gray-900" : "text-gray-500",
-                      "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      open ? "text-white" : "text-white",
+                      "group rounded-md inline-flex items-center text-base font-medium hover:text-gray-200 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-800"
                     )}
                   >
-                    <span>Solutions</span>
+                    <span>Categorias</span>
                     <ChevronDownIcon
                       className={classNames(
-                        open ? "text-gray-600" : "text-gray-400",
-                        "ml-2 h-5 w-5 group-hover:text-gray-500"
+                        open ? "text-white" : "text-white",
+                        "ml-2 h-5 w-5 group-hover:text-white"
                       )}
                       aria-hidden="true"
                     />
@@ -129,12 +111,13 @@ export default function Navbar() {
                   >
                     <Popover.Panel className="absolute z-10 w-screen max-w-md px-2 mt-3 -ml-4 transform sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                       <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                        <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8">
-                          {solutions.map((item) => (
-                            <a
+                        <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8 ">
+                        {solutions.map((item) => (
+                          <Link key={item.key}  to={`/category/${(item.name).toLowerCase()}`}>
+                              <button
                               key={item.name}
                               href={item.href}
-                              className="flex items-start p-3 -m-3 rounded-lg hover:bg-gray-50"
+                              className="flex items-start p-3 -m-3 rounded-lg"
                             >
                               <item.icon
                                 className="flex-shrink-0 w-6 h-6 text-indigo-600"
@@ -148,23 +131,8 @@ export default function Navbar() {
                                   {item.description}
                                 </p>
                               </div>
-                            </a>
-                          ))}
-                        </div>
-                        <div className="px-5 py-5 space-y-6 bg-gray-50 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                          {callsToAction.map((item) => (
-                            <div key={item.name} className="flow-root">
-                              <a
-                                href={item.href}
-                                className="flex items-center p-3 -m-3 text-base font-medium text-gray-900 rounded-md hover:bg-gray-100"
-                              >
-                                <item.icon
-                                  className="flex-shrink-0 w-6 h-6 text-gray-400"
-                                  aria-hidden="true"
-                                />
-                                <span className="ml-3">{item.name}</span>
-                              </a>
-                            </div>
+                            </button>
+                          </Link>
                           ))}
                         </div>
                       </div>
@@ -173,30 +141,29 @@ export default function Navbar() {
                 </>
               )}
             </Popover>
-
-            <a
-              href="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
+            <Link to={"/"}>
+            <button
+              className="text-base font-medium text-white hover:text-gray-200"
             >
-              Pricing
-            </a>
-            <a
-              href="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
+              Inicio
+            </button>
+            </Link>
+            <button
+              className="text-base font-medium text-white hover:text-gray-200"
             >
-              Docs
-            </a>
+              Sobre Nosotros
+            </button>
 
             <Popover className="relative">
               {({ open }) => (
                 <>
                   <Popover.Button
                     className={classNames(
-                      open ? "text-gray-900" : "text-gray-500",
-                      "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      open ? "text-white" : "text-white",
+                      "group  rounded-md inline-flex items-center text-base font-medium hover:text-gray-200 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-800"
                     )}
                   >
-                    <span>More</span>
+                    <span>Mas</span>
                     <ChevronDownIcon
                       className={classNames(
                         open ? "text-gray-600" : "text-gray-400",
@@ -247,7 +214,7 @@ export default function Navbar() {
             </Popover>
           </Popover.Group>
           <div className="items-center justify-end hidden text-xl text-white md:flex md:flex-1 lg:w-0">
-            <button href="#" className="p-1 pl-3 pr-3 bg-gray-600 rounded hover:bg-gray-800 hover:scale-125"><CartWidget/></button>
+            <button href="#" className="p-1 pl-3 pr-3 bg-gray-600 rounded hover:bg-gray-500 hover:scale-125"><CartWidget/></button>
           </div>
         </div>
       </div>
@@ -286,7 +253,7 @@ export default function Navbar() {
                 <nav className="grid gap-y-8">
                   {solutions.map((item) => (
                     <a
-                      key={item.name}
+                      key={item.key}
                       href={item.href}
                       className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50"
                     >
@@ -300,32 +267,6 @@ export default function Navbar() {
                     </a>
                   ))}
                 </nav>
-              </div>
-            </div>
-            <div className="px-5 py-6 space-y-6">
-              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Pricing
-                </a>
-
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Docs
-                </a>
-                {resources.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    {item.name}
-                  </a>
-                ))}
               </div>
             </div>
           </div>

@@ -1,10 +1,16 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
+
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
+
+  const { idCategory } = useParams()
+
+  const results = items.filter(ele => ele.tipo === `${idCategory}`)
 
   const getItems = async () => {
     try {
@@ -19,11 +25,11 @@ const ItemListContainer = () => {
   };
   useEffect(() => {
     getItems();
+    
   }, []);
-
   return (
     <div>
-      <ItemList items={items} />
+      {idCategory !== undefined ? <ItemList items={results}/>: <ItemList items={items}/> }
     </div>
   );
 };

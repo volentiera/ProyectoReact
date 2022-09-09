@@ -5,7 +5,7 @@ import "./itemdetailconfig.css";
 
 const ItemDetail = ({item}) => {
     return (
-    <div key={item.id} className="borders-detail shadow-lg">
+    <div key={item.id} className="borders-detail">
         <h2 className='tittle-detail container'>{item.nombre} {item.marca}</h2>
         <div className='p-5 m-5 grid grid-cols-6 grid-rows-2 gap-4'>
             <div></div>

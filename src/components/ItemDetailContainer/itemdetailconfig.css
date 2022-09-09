@@ -1,9 +1,8 @@
 .tittle-detail{
-    align-self: initial !important;
     font-size: 30px;
     font-weight: bold;
-    padding: 10px;
-    margin: 15px;
+    padding-top: 10px;
+    margin-top: 15px;
 }
 .description-detail{
     font-size: 20px;
