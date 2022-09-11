@@ -1,15 +1,25 @@
 .tittle-detail{
     font-size: 30px;
     font-weight: bold;
-    padding-top: 10px;
-    margin-top: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
 }
 .description-detail{
     font-size: 20px;
     padding-top: 80px;
 }
-.borders-detail{
-    border-top: 1px;
-    border-style: solid;
-    border-color: gray;
+.loader-detail{
+    padding-top: 200px;
+}
+.loader-detail-svg{
+    height: 200px;
+    width: 100%;
+}
+.loader-detail-text-title{
+    height: 20px;
+    width: 100%;
+}
+.loader-detail-text{
+    height: 10px;
+    width: 100%;
 }

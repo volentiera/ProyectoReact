@@ -1,8 +1,12 @@
+
 import React from 'react';
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from 'react-router-dom';
 import ItemDetail from './ItemDetail';
+import ItemDetailError from './ItemDetailError';
+import ItemDetailLoader from './ItemDetailLoader';
+
 
 
 const ItemDetailContainer = () => {
@@ -22,13 +26,16 @@ const ItemDetailContainer = () => {
       };
       useEffect(() => {
         getItems();
-        
       }, []);
-    return (
-        <div>
-            <ItemDetail item={item}/>
-        </div>
-    );
+
+        return (
+          <div>
+            {item == "" && <ItemDetailLoader/>}
+            {item !== undefined ? <ItemDetail item={item}/>: <ItemDetailError/>}
+          </div>
+      )
+      
+
 };
 
 export default ItemDetailContainer;
