@@ -15,23 +15,26 @@ import { ChevronDownIcon } from "@heroicons/react/solid";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
 
-const solutions = [
+const categories = [
   {
     name: "Indumentaria",
     href: "#",
     key: "1",
+    type: "indumentaria",
     icon: ChartBarIcon,
   },
   {
-    name: "Accesorio",
+    name: "Accesorios",
     href: "#",
     key: "2",
+    type: "accesorio",
     icon: CursorClickIcon,
   },
   {
     name: "Calzado",
     href: "#",
     key: "3",
+    type: "calzado",
     icon: ShieldCheckIcon,
   }
 ];
@@ -112,8 +115,8 @@ export default function Navbar() {
                     <Popover.Panel className="absolute z-10 w-screen max-w-md px-2 mt-3 -ml-4 transform sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                       <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                         <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8 ">
-                        {solutions.map((item) => (
-                          <Link key={item.key}  to={`/category/${(item.name).toLowerCase()}`}>
+                        {categories.map((item) => (
+                          <Link key={item.key}  to={`/category/${item.type}`}>
                               <button
                               key={item.name}
                               href={item.href}
@@ -126,9 +129,6 @@ export default function Navbar() {
                               <div className="ml-4">
                                 <p className="text-base font-medium text-gray-900">
                                   {item.name}
-                                </p>
-                                <p className="mt-1 text-sm text-gray-500">
-                                  {item.description}
                                 </p>
                               </div>
                             </button>
@@ -251,7 +251,7 @@ export default function Navbar() {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  {solutions.map((item) => (
+                  {categories.map((item) => (
                     <a
                       key={item.key}
                       href={item.href}

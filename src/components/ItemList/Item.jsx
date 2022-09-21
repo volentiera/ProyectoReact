@@ -5,7 +5,7 @@ import "./modalcart.css";
 const Item = ({ item }) => {
 
   return (
-    <div className="p-5 m-5 text-gray-700 bg-white rounded shadow-lg">
+    <div className="p-5 m-5 text-gray-700 bg-white rounded-xl shadow-lg border-solid border-2 border-gray-300">
       <img className="rounded" src={item.imagen} alt="..." />
       <h3 className="">{item.nombre} </h3>
       <h3>{item.marca}</h3>
