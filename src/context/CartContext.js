@@ -27,12 +27,17 @@ const CartProvider = ({children}) => {
         setCart([...resultRemove])
     }
     const isInCart = (itemId) =>{
-        return cart.find((e) => e.id === itemId)
+        return cart.find((item) => item.id === itemId)
     }
-
-    console.log(cart)
+    const total = () =>{
+        let tot = 0
+        cart.forEach(item=>{
+            tot = tot + item.precio * item.quantity
+        })
+        return tot
+    }
     return(
-        <CartContext.Provider value={{cart, setCart, addItem , removeAllItems, removeItemById, isInCart}}>
+        <CartContext.Provider value={{cart, setCart, addItem , removeAllItems, removeItemById, isInCart, total}}>
             {children}
         </CartContext.Provider>
     )

@@ -20,7 +20,6 @@ const ItemDetail = ({item}) => {
     const onAdd = (quantity) =>{
         setQuantity(quantity)
         addItem(item, quantity)
-        //removeItemById(item.id)
         
     }
     const changeItemCount = (a) =>{

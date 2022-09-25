@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import {
   BookmarkAltIcon,
@@ -14,6 +14,7 @@ import {
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 const categories = [
   {
@@ -63,6 +64,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const {cart} = useContext(CartContext)
   return (
     <Popover className="relative bg-gray-800">
       <div className="px-4 mx-auto max-w-7xl sm:px-6">
@@ -213,9 +215,18 @@ export default function Navbar() {
               )}
             </Popover>
           </Popover.Group>
-          <div className="items-center justify-end hidden text-xl text-white md:flex md:flex-1 lg:w-0">
-            <button href="#" className="p-1 pl-3 pr-3 bg-gray-600 rounded hover:bg-gray-500 hover:scale-125"><CartWidget/></button>
-          </div>
+          {cart.length > 0 ? 
+          <div className=" justify-end hidden text-xl text-white md:flex md:flex-1 lg:w-0">
+            <Link to={"/cart"}>
+              <button  className="flex p-1 pl-3 pr-3 bg-gray-600 rounded hover:bg-gray-500 hover:scale-125">
+                <CartWidget/>
+                <h2 className="pl-1">{cart.length}</h2>
+              </button>
+            </Link>
+          </div>:
+          <div className="items-center justify-end hidden text-gray-200 md:flex md:flex-1 lg:w-0">
+            Carrito Vacio
+          </div>}
         </div>
       </div>
 
