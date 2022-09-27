@@ -1,4 +1,5 @@
 
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import React from 'react';
 import { useEffect } from "react";
 import { useState } from "react";
@@ -10,23 +11,24 @@ import ItemDetailLoader from './ItemDetailLoader';
 
 
 const ItemDetailContainer = () => {
-    const [item, setItems] = useState([]);
+    const [item, setItem] = useState({});
     const { idItem } = useParams()
 
-    const getItems = async () => {
-        try {
-            const response = await fetch(
-            `https://62e2a4b4b54fc209b87dbcaf.mockapi.io/catalogoProductos`
-            );
-            const data = await response.json();
-            setItems(data[parseInt(idItem) - 1]);
-        } catch (e) {
-          console.log(e);
-        }
-      };
+
       useEffect(() => {
-        getItems();
-      }, []);
+        if (idItem){
+          const db = getFirestore()
+          const itemRef = doc(db, "items" ,idItem)
+          getDoc(itemRef).then((snapshot) =>{
+            const newItem = {
+              id: snapshot.id,
+              ...snapshot.data()
+            }
+            setItem(newItem)
+          })
+        }
+
+      }, [idItem]);
 
         return (
           <div>

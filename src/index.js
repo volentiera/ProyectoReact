@@ -4,8 +4,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'remixicon/fonts/remixicon.css'
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyB8hAJKPQ4qWsOUAkYo2B7RQQ1uVEbYzdo",
+  authDomain: "db-allsports-deportes.firebaseapp.com",
+  projectId: "db-allsports-deportes",
+  storageBucket: "db-allsports-deportes.appspot.com",
+  messagingSenderId: "159521251560",
+  appId: "1:159521251560:web:8e2ebf2cc4cb57cf15295d"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <App />

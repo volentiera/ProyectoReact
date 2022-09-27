@@ -6,7 +6,6 @@ const Cart = ({item , index , removeItemById}) => {
     const removeItemByIdHandler = () =>{
         removeItemById(item.id)
     }
-    console.log(item.length)
     return (
         <>
         <div className='grid grid-cols-6 grid-rows-1 text-center bg-gray-200'>
