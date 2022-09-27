@@ -20,20 +20,23 @@ const ItemDetailContainer = () => {
           const db = getFirestore()
           const itemRef = doc(db, "items" ,idItem)
           getDoc(itemRef).then((snapshot) =>{
-            const newItem = {
-              id: snapshot.id,
-              ...snapshot.data()
+            if (snapshot.exists()){
+              const newItem = {
+                id: snapshot.id,
+                ...snapshot.data()
+              }
+              setItem(newItem)
             }
-            setItem(newItem)
           })
         }
 
       }, [idItem]);
-
+      const isEmpty = Object.keys(item).length === 0
+      
         return (
           <div>
-            {item == "" && <ItemDetailLoader/>}
-            {item !== undefined ? <ItemDetail item={item}/>: <ItemDetailError/>}
+            {isEmpty === true && <ItemDetailLoader/>} 
+            {isEmpty === false ? <ItemDetail item={item}/>: <ItemDetailError/>} 
           </div>
       )
       
