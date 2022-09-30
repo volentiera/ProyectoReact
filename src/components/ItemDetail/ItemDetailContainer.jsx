@@ -11,7 +11,7 @@ import ItemDetailLoader from './ItemDetailLoader';
 
 
 const ItemDetailContainer = () => {
-    const [item, setItem] = useState({});
+    const [item, setItem] = useState(null);
     const { idItem } = useParams()
 
 
@@ -26,17 +26,25 @@ const ItemDetailContainer = () => {
                 ...snapshot.data()
               }
               setItem(newItem)
+            }else {
+              setItem({})
             }
           })
         }
-
+        
       }, [idItem]);
-      const isEmpty = Object.keys(item).length === 0
-      
+
+      const algo = () =>{
+        if (item !== null){
+          const isEmpty = Object.keys(item).length === 0
+          return isEmpty
+        }
+      }
+      console.log(algo())
         return (
           <div>
-            {isEmpty === true && <ItemDetailLoader/>} 
-            {isEmpty === false ? <ItemDetail item={item}/>: <ItemDetailError/>} 
+            {item === null && <ItemDetailLoader/>} 
+            {algo() === false  ? <ItemDetail item={item}/>: <ItemDetailError/>}
           </div>
       )
       

@@ -3,6 +3,7 @@ import { CartContext } from "../../context/CartContext";
 import Cart from "./Cart";
 import "./cartconfig.css";
 import { Link } from "react-router-dom";
+import FormUserContainer from "../FormUser/FormUserContainer";
 
 const CartContainer = () => {
   const { cart , removeItemById, removeAllItems, total  } = useContext(CartContext);
@@ -27,17 +28,13 @@ const CartContainer = () => {
           <div className="grid grid-cols-2 grid-rows-1 text-center pb-5 bg-gray-200 p-5">
             <h2 className="total-cart-text">Total Final:  ${totalPrice}</h2>
             <div>
-            <button
-              className="mr-3 button-delete-all-cart bg-blue-500 rounded text-white"
-            >
-              Comprar
-            </button>
-            <button
-              onClick={removeAllItemsHandler}
-              className="button-delete-all-cart bg-gray-500 rounded text-white"
-            >
-              Vaciar Carrito
-            </button>
+              <FormUserContainer/>
+              <button
+                onClick={removeAllItemsHandler}
+                className="button-delete-all-cart bg-gray-500 rounded text-white"
+              >
+                Vaciar Carrito
+              </button>
             </div>
           </div>
         </>
