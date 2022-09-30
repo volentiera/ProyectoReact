@@ -38,7 +38,7 @@ const FormUserContainer = () => {
     }
     return (
         <>
-        <FormUser changeHandler={changeHandler} onAdd={onAdd} handleClose={handleClose} open={open} handleOpen={handleOpen} id={id}/>
+        <FormUser changeHandler={changeHandler} onAdd={onAdd} handleClose={handleClose} open={open} handleOpen={handleOpen}/>
         </>
     );
 };

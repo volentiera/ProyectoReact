@@ -3,16 +3,14 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import "./formuserconfig.css";
-import SuccessfulBuy from "./SuccessfulBuy";
 
 
 
-const FormUser = ( { changeHandler, onAdd , handleClose , handleOpen, open , id } ) => {
+
+const FormUser = ( { changeHandler, onAdd , handleClose , handleOpen, open} ) => {
 
 
   return (
-    <>
-    {id !== "undefined" ? 
     <>
     <button
       onClick={handleOpen}
@@ -65,12 +63,6 @@ const FormUser = ( { changeHandler, onAdd , handleClose , handleOpen, open , id 
         </div>
       </Box>
     </Modal>
-    </>:
-    <>
-    <SuccessfulBuy/>
-    </>
-    }
-    
     </>
   );
 };
