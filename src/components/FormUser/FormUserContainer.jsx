@@ -6,6 +6,7 @@ import { addDoc, collection, getFirestore } from "firebase/firestore"
 const FormUserContainer = () => {
 
     const [open, setOpen] = React.useState(false);
+    
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -16,7 +17,7 @@ const FormUserContainer = () => {
         email: "",
         algo: ""
     })
-    const { cart , total } = useContext(CartContext)
+    const { cart , total , removeAllItems } = useContext(CartContext)
 
     const changeHandler = (e) =>{
         const newForm = {...form, [e.target.name]: e.target.value}
@@ -32,13 +33,18 @@ const FormUserContainer = () => {
         const db = getFirestore()
         const orderCollection = collection(db, "orders")
         addDoc(orderCollection, finalOrder ).then((snapshot)=>{
-            setId(snapshot)
+            setId(snapshot.id)
         })
-        id !== "undefined" && handleClose()
+        id !== undefined && handleClose()
+        
+        setTimeout(() => {
+            removeAllItems()
+        }, "10000")
     }
+
     return (
         <>
-        <FormUser changeHandler={changeHandler} onAdd={onAdd} handleClose={handleClose} open={open} handleOpen={handleOpen}/>
+        <FormUser changeHandler={changeHandler} onAdd={onAdd} handleClose={handleClose} open={open} handleOpen={handleOpen} id={id}/>
         </>
     );
 };

@@ -11,3 +11,16 @@
     text-align: center;
     border-radius: 15px;
 }
+.modal-form-success{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 200px;
+    border: 1px solid #000;
+    box-shadow: 24 ;
+    padding: 40px;
+    text-align: center;
+    border-radius: 15px;
+}

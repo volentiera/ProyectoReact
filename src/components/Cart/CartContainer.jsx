@@ -22,8 +22,8 @@ const CartContainer = () => {
         <>
         <div className="pt-5 bg-gray-200"></div>
         <div className="pt-5 bg-gray-400"></div>
-          {cart.map((e , index) => (
-            <Cart key={e.id} item={e} removeItemById={removeItemById} index={index} />
+          {cart.map((element , index) => (
+            <Cart key={element.id} cartItem={element} removeItemById={removeItemById} index={index} />
           ))}
           <div className="grid grid-cols-2 grid-rows-1 text-center pb-5 bg-gray-200 p-5">
             <h2 className="total-cart-text">Total Final:  ${totalPrice}</h2>

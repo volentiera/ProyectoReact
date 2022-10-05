@@ -6,7 +6,7 @@ import {BrowserRouter , Route, Routes} from 'react-router-dom'
 
 import Navbar from './components/Navbar';
 import { CartProvider } from './context/CartContext';
-import CartContainer from './components/ItemCart/CartContainer';
+import CartContainer from './components/Cart/CartContainer';
 
 
 

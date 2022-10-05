@@ -34,17 +34,17 @@ const ItemDetailContainer = () => {
         
       }, [idItem]);
 
-      const algo = () =>{
+      const checkEmpty = () =>{
         if (item !== null){
           const isEmpty = Object.keys(item).length === 0
           return isEmpty
         }
       }
-      console.log(algo())
+
         return (
           <div>
             {item === null && <ItemDetailLoader/>} 
-            {algo() === false  ? <ItemDetail item={item}/>: <ItemDetailError/>}
+            {checkEmpty() === false  ? <ItemDetail item={item}/>: <ItemDetailError/>}
           </div>
       )
       

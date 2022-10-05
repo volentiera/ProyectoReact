@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const CartContext = React.createContext()
 
 const CartProvider = ({children}) => {
 
     const [cart, setCart] = useState([])
-
+    
     const addItem = (item, quantity) =>{
         const resultIsInCart = isInCart(item.id)
-
+        
         if ( resultIsInCart ){
             const resultAdd = cart.filter((a) => a.id !== item.id)
             item.quantity = quantity + resultIsInCart.quantity
@@ -21,6 +21,7 @@ const CartProvider = ({children}) => {
     }
     const removeAllItems = () =>{
         setCart([])
+        localStorage.setItem("items", JSON.stringify([]))
     }
     const removeItemById = (id)=>{
         const resultRemove = cart.filter(a => a.id !== id)
@@ -36,6 +37,18 @@ const CartProvider = ({children}) => {
         })
         return tot
     }
+
+    useEffect(()=>{
+        if (localStorage.getItem('items') !== null){
+            setCart(JSON.parse(localStorage.getItem('items')))
+        }
+    },[])
+
+    const isEmpty = Object.keys(cart).length === 0
+    if (!isEmpty){
+        localStorage.setItem("items", JSON.stringify(cart))
+    }
+
     return(
         <CartContext.Provider value={{cart, setCart, addItem , removeAllItems, removeItemById, isInCart, total}}>
             {children}
