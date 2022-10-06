@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import "./formuserconfig.css";
+import { CartContext } from "../../context/CartContext";
 
-const FormUser = ({ changeHandler, onAdd, handleClose, handleOpen, open, id}) => {
+const FormUser = ({ changeHandler, onAdd, handleClose, handleOpen, open, id, form}) => {
   
+  const { cart , total} = useContext(CartContext)
+
   return (
     <>
       <button
         onClick={handleOpen}
-        className="m-5 button-delete-all-cart bg-blue-500 rounded text-white"
+        className="m-5 text-white bg-blue-500 rounded button-delete-all-cart"
       >
         Comprar
       </button>
@@ -22,11 +25,11 @@ const FormUser = ({ changeHandler, onAdd, handleClose, handleOpen, open, id}) =>
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Box className="modal-form bg-gray-300">
+            <Box className="bg-gray-300 modal-form">
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Ingrese sus datos para finalizar la compra:
               </Typography>
-              <div className="flex flex-col m-5 p-5">
+              <div className="flex flex-col p-5 m-5">
                 <label htmlFor="name">Nombre y apellido:</label>
                 <input
                   onChange={(e) => changeHandler(e)}
@@ -60,7 +63,7 @@ const FormUser = ({ changeHandler, onAdd, handleClose, handleOpen, open, id}) =>
                 >
                   <svg
                     aria-hidden="true"
-                    className="mr-2 -ml-1 w-5 h-5"
+                    className="w-5 h-5 mr-2 -ml-1"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -88,18 +91,30 @@ const FormUser = ({ changeHandler, onAdd, handleClose, handleOpen, open, id}) =>
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Box className="modal-form-success bg-gray-300">
+            <Box className="bg-gray-300 modal-form-success">
                 <h2>
-                  Su compra fue realizada con exito:
+                  Felicidades {form.name} Su compra ha sido exitosa:
                 </h2>
-                <div className="pt-5">
-                  <h3>
-                    Numero de compra: {id}
+                <div>
+                  <h3 className="pt-5">Numero de compra:</h3>
+                  <h3 className="p-5 text-center">
+                    {id}
                   </h3>
-                  <h3>
-                    Recibiras un mail con mas detalles.
+                  <h3>Sus articulos son:</h3>
+                  {cart.map((e,index) => {
+                    return (
+                    <>
+                    <h3 className="inline-block p-5 text-center">{index+1}- {e.nombre} - {e.marca}</h3>
+                    </>
+                    )
+                  })}
+                  <h3 className="pt-5">
+                    El total es: ${total()}
                   </h3>
                 </div>
+                <h3 className="pt-5">
+                  Mas detalles seran enviados a {form.email}
+                </h3>
             </Box>
           </Modal>
         </>

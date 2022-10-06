@@ -39,12 +39,12 @@ const FormUserContainer = () => {
         
         setTimeout(() => {
             removeAllItems()
-        }, "10000")
+        }, "20000")
     }
 
     return (
         <>
-        <FormUser changeHandler={changeHandler} onAdd={onAdd} handleClose={handleClose} open={open} handleOpen={handleOpen} id={id}/>
+        <FormUser changeHandler={changeHandler} onAdd={onAdd} handleClose={handleClose} open={open} handleOpen={handleOpen} id={id} form={form}/>
         </>
     );
 };
