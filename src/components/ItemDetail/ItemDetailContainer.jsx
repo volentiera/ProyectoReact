@@ -14,6 +14,7 @@ const ItemDetailContainer = () => {
   
   const { idItem } = useParams();
 
+  //uso state para modificar el estado del useparams dentro del context
   useEffect(() => {
     setIdItem(idItem)
   }, []);

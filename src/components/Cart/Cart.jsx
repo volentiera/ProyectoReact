@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import CartItem from "./CartItem";
 import "./cartconfig.css";
-import { Link } from "react-router-dom";
 import FormUserContainer from "../FormUser/FormUserContainer";
+import CartEmpty from "./CartEmpty";
 
 const Cart = () => {
   const { cart , removeItemById, removeAllItems, total  } = useContext(CartContext);
@@ -41,10 +41,7 @@ const Cart = () => {
       ) 
       : 
       (
-        <div className="bg-gray-200 empty-cart">
-          <h2 className="empty-cart-text">El carrito esta vacio</h2>
-          <div className="button-back-menu-cart"><Link to={"/"}><button className="ml-5 text-white bg-gray-500 rounded">Volver al inicio</button></Link></div>
-        </div>
+        <CartEmpty/>
       )}
     </>
   );
