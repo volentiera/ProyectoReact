@@ -7,7 +7,7 @@ import { CartContext } from "../../context/CartContext";
 
 const FormUser = ({ changeHandler, onAdd, handleClose, handleOpen, open, id, form}) => {
   
-  const { cart , total} = useContext(CartContext)
+  const { cart , total , removeAllItems } = useContext(CartContext)
 
   return (
     <>
@@ -87,7 +87,7 @@ const FormUser = ({ changeHandler, onAdd, handleClose, handleOpen, open, id, for
         <>
           <Modal
             open={open}
-            onClose={handleClose}
+            onClose={() => {handleClose() ; removeAllItems()}}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
@@ -104,7 +104,7 @@ const FormUser = ({ changeHandler, onAdd, handleClose, handleOpen, open, id, for
                   {cart.map((e,index) => {
                     return (
                     <>
-                    <h3 className="inline-block p-5 text-center">{index+1}- {e.nombre} - {e.marca}</h3>
+                    <h3 key={cart.id} className="inline-block p-5 text-center">{index+1}- {e.nombre} - {e.marca}</h3>
                     </>
                     )
                   })}

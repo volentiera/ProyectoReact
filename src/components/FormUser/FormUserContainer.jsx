@@ -17,7 +17,7 @@ const FormUserContainer = () => {
         email: "",
         algo: ""
     })
-    const { cart , total , removeAllItems } = useContext(CartContext)
+    const { cart , total } = useContext(CartContext)
 
     const changeHandler = (e) =>{
         const newForm = {...form, [e.target.name]: e.target.value}
@@ -36,10 +36,6 @@ const FormUserContainer = () => {
             setId(snapshot.id)
         })
         id !== undefined && handleClose()
-        
-        setTimeout(() => {
-            removeAllItems()
-        }, "20000")
     }
 
     return (

@@ -1,9 +1,8 @@
 
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import React from 'react';
-import { useEffect } from "react";
-import { useState } from "react";
+
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { ItemsContext } from '../../context/ItemsContext';
 import ItemDetail from './ItemDetail';
 import ItemDetailError from './ItemDetailError';
 import ItemDetailLoader from './ItemDetailLoader';
@@ -11,40 +10,18 @@ import ItemDetailLoader from './ItemDetailLoader';
 
 
 const ItemDetailContainer = () => {
-    const [item, setItem] = useState(null);
-    const { idItem } = useParams()
+  const {item, checkEmpty, setIdItem} = useContext(ItemsContext)
+  
+  const { idItem } = useParams();
 
-
-      useEffect(() => {
-        if (idItem){
-          const db = getFirestore()
-          const itemRef = doc(db, "items" ,idItem)
-          getDoc(itemRef).then((snapshot) =>{
-            if (snapshot.exists()){
-              const newItem = {
-                id: snapshot.id,
-                ...snapshot.data()
-              }
-              setItem(newItem)
-            }else {
-              setItem({})
-            }
-          })
-        }
-        
-      }, [idItem]);
-
-      const checkEmpty = () =>{
-        if (item !== null){
-          const isEmpty = Object.keys(item).length === 0
-          return isEmpty
-        }
-      }
-
+  useEffect(() => {
+    setIdItem(idItem)
+  }, []);
+  
         return (
           <div>
             {item === null && <ItemDetailLoader/>} 
-            {checkEmpty() === false  ? <ItemDetail item={item}/>: <ItemDetailError/>}
+            {(checkEmpty() === false) ? <ItemDetail item={item}/> : (checkEmpty() !== undefined) && <ItemDetailError/>}
           </div>
       )
       

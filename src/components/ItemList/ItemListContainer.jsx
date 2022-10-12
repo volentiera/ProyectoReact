@@ -1,29 +1,17 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
-import { getFirestore , getDocs, collection } from "firebase/firestore"
+
+import { ItemsContext } from "../../context/ItemsContext";
 
 
 const ItemListContainer = () => {
-  const [items, setItems] = useState([]);
-
-  const { idCategory } = useParams()
-
-  const results = items.filter(ele => ele.tipo === `${idCategory}`)
+  const { items, results, setIdCategory} = useContext(ItemsContext)
+  const { idCategory } = useParams();
 
   useEffect(() => {
-    const db = getFirestore()
-    const itemsDB = collection(db, "items")
-    getDocs(itemsDB).then((snapshot)=>{
-      const docs = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }))
-      setItems(docs)
-    })
-  }, []);
+    setIdCategory(idCategory)
+  }, [idCategory]);
 
   return (
     <div>
