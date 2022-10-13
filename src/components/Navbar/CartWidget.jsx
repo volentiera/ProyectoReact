@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const CartWidget = () => {
-    return (
-        <i className="ri-shopping-cart-2-line "/>
-    );
+  return <i className="ri-shopping-cart-2-line " />;
 };
 
 export default CartWidget;

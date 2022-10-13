@@ -46,11 +46,11 @@ const FormUser = ({ changeHandler, onAdd, handleClose, handleOpen, open, id, for
                   className="m-3 rounded"
                   type="email"
                 />
-                <label htmlFor="algo">algo</label>
+                <label htmlFor="phone">Telefono</label>
                 <input
                   onChange={(e) => changeHandler(e)}
-                  id="algo"
-                  name="algo"
+                  id="phone"
+                  name="phone"
                   className="m-3 rounded"
                   type="text"
                 />

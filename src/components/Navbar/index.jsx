@@ -37,7 +37,7 @@ const categories = [
     key: "3",
     type: "calzado",
     icon: ShieldCheckIcon,
-  }
+  },
 ];
 
 const resources = [
@@ -55,16 +55,15 @@ const resources = [
     name: "Descuentos",
     href: "#",
     icon: CalendarIcon,
-  }
+  },
 ];
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
-  const {cart} = useContext(CartContext)
+  const { cart } = useContext(CartContext);
   return (
     <Popover className="relative bg-gray-800">
       <div className="px-4 mx-auto max-w-7xl sm:px-6">
@@ -117,24 +116,24 @@ export default function Navbar() {
                     <Popover.Panel className="absolute z-10 w-screen max-w-md px-2 mt-3 -ml-4 transform sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                       <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                         <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8 ">
-                        {categories.map((item) => (
-                          <Link key={item.key}  to={`/category/${item.type}`}>
+                          {categories.map((item) => (
+                            <Link key={item.key} to={`/category/${item.type}`}>
                               <button
-                              key={item.name}
-                              href={item.href}
-                              className="flex items-start p-3 -m-3 rounded-lg"
-                            >
-                              <item.icon
-                                className="flex-shrink-0 w-6 h-6 text-indigo-600"
-                                aria-hidden="true"
-                              />
-                              <div className="ml-4">
-                                <p className="text-base font-medium text-gray-900">
-                                  {item.name}
-                                </p>
-                              </div>
-                            </button>
-                          </Link>
+                                key={item.name}
+                                href={item.href}
+                                className="flex items-start p-3 -m-3 rounded-lg"
+                              >
+                                <item.icon
+                                  className="flex-shrink-0 w-6 h-6 text-indigo-600"
+                                  aria-hidden="true"
+                                />
+                                <div className="ml-4">
+                                  <p className="text-base font-medium text-gray-900">
+                                    {item.name}
+                                  </p>
+                                </div>
+                              </button>
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -144,15 +143,11 @@ export default function Navbar() {
               )}
             </Popover>
             <Link to={"/"}>
-            <button
-              className="text-base font-medium text-white hover:text-gray-200"
-            >
-              Inicio
-            </button>
+              <button className="text-base font-medium text-white hover:text-gray-200">
+                Inicio
+              </button>
             </Link>
-            <button
-              className="text-base font-medium text-white hover:text-gray-200"
-            >
+            <button className="text-base font-medium text-white hover:text-gray-200">
               Sobre Nosotros
             </button>
 
@@ -215,18 +210,20 @@ export default function Navbar() {
               )}
             </Popover>
           </Popover.Group>
-          {cart.length > 0 ? 
-          <div className=" justify-end hidden text-xl text-white md:flex md:flex-1 lg:w-0">
-            <Link to={"/cart"}>
-              <button  className="flex p-1 pl-3 pr-3 bg-gray-600 rounded hover:bg-gray-500 hover:scale-125">
-                <CartWidget/>
-                <h2 className="pl-1">{cart.length}</h2>
-              </button>
-            </Link>
-          </div>:
-          <div className="items-center justify-end hidden text-gray-200 md:flex md:flex-1 lg:w-0">
-            Carrito Vacio
-          </div>}
+          {cart.length > 0 ? (
+            <div className=" justify-end hidden text-xl text-white md:flex md:flex-1 lg:w-0">
+              <Link to={"/cart"}>
+                <button className="flex p-1 pl-3 pr-3 bg-gray-600 rounded hover:bg-gray-500 hover:scale-125">
+                  <CartWidget />
+                  <h2 className="pl-1">{cart.length}</h2>
+                </button>
+              </Link>
+            </div>
+          ) : (
+            <div className="items-center justify-end hidden text-gray-200 md:flex md:flex-1 lg:w-0">
+              Carrito Vacio
+            </div>
+          )}
         </div>
       </div>
 

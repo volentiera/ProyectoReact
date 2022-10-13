@@ -3,7 +3,6 @@ import React, { useState } from "react";
 const ItemCount = ({ stock, initial, onAdd, changeItemCount }) => {
   const [count, setCount] = useState(initial);
 
-
   const addNumber = () => {
     if (count < stock) {
       setCount(count + 1);
@@ -17,12 +16,11 @@ const ItemCount = ({ stock, initial, onAdd, changeItemCount }) => {
   return (
     <div>
       <div className="flex items-center justify-center p-5 m-5 text-black bg-white rounded">
-        <button className="p-5 " onClick={() =>  restNumber(count)}>
+        <button className="p-5 " onClick={() => restNumber(count)}>
           -
         </button>
-        <h3 className="p-5 text-black">{(count)}</h3>
-        <button className="p-5" onClick={() =>  addNumber(count)}
-        >
+        <h3 className="p-5 text-black">{count}</h3>
+        <button className="p-5" onClick={() => addNumber(count)}>
           +
         </button>
       </div>
@@ -30,7 +28,10 @@ const ItemCount = ({ stock, initial, onAdd, changeItemCount }) => {
         <button
           type="button"
           className="text-white bg-gray-500 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          onClick={() => {onAdd(count); changeItemCount(false)}}
+          onClick={() => {
+            onAdd(count);
+            changeItemCount(false);
+          }}
         >
           <svg
             aria-hidden="true"

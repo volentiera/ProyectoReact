@@ -1,32 +1,30 @@
-
-
-import React, { useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { ItemsContext } from '../../context/ItemsContext';
-import ItemDetail from './ItemDetail';
-import ItemDetailError from './ItemDetailError';
-import ItemDetailLoader from './ItemDetailLoader';
-
-
+import React, { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { ItemsContext } from "../../context/ItemsContext";
+import ItemDetail from "./ItemDetail";
+import ItemDetailError from "./ItemDetailError";
+import ItemDetailLoader from "./ItemDetailLoader";
 
 const ItemDetailContainer = () => {
-  const {item, checkEmpty, setIdItem} = useContext(ItemsContext)
-  
+  const { item, checkEmpty, setIdItem } = useContext(ItemsContext);
+
   const { idItem } = useParams();
 
   //uso state para modificar el estado del useparams dentro del context
   useEffect(() => {
-    setIdItem(idItem)
+    setIdItem(idItem);
   }, []);
-  
-        return (
-          <div>
-            {item === null && <ItemDetailLoader/>} 
-            {(checkEmpty() === false) ? <ItemDetail item={item}/> : (checkEmpty() !== undefined) && <ItemDetailError/>}
-          </div>
-      )
-      
 
+  return (
+    <div>
+      {item === null && <ItemDetailLoader />}
+      {checkEmpty() === false ? (
+        <ItemDetail item={item} />
+      ) : (
+        checkEmpty() !== undefined && <ItemDetailError />
+      )}
+    </div>
+  );
 };
 
 export default ItemDetailContainer;
